@@ -13,21 +13,13 @@ class LinearCongruential:
 
 
 class SquaredRandom:
-    def __init__(self, seed):
+    def __init__(self, seed, mod):
         self.seed = seed
+        self.mod = mod
 
     def get_random_number(self):
         square = str(self.seed**2)
-        print(square)
         if len(square) % 2 != 0:
             square = "0" + square
-        print(square)
         mid = int(len(square) / 4)
-        print("mid", mid, "len", len(square))
-        return square[mid : len(square) - mid]
-
-
-random1 = SquaredRandom(130000)
-random2 = SquaredRandom(random1)
-print(random1.get_random_number())
-print(random2.get_random_number())
+        return int(square[mid : len(square) - mid]) % self.mod
